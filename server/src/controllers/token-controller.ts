@@ -1,8 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { getUserToken } from "../services/user-access-token";
 import { getUserProfile } from "../services/spotify-api";
-import { User } from "../types";
-import jwt, { SignCallback } from "jsonwebtoken";
 import { signTokenPromise } from "../utils/utils";
 
 const jwtSecret = process.env.JWT_SECRET as string;

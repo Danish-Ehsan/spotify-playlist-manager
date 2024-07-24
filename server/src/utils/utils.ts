@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-import { Request, Response, NextFunction } from "express";
 
 export function signTokenPromise(
   payload: string | object,
