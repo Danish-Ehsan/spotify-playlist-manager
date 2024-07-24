@@ -6,6 +6,8 @@ export default function errorHandler(
   res: Response,
   next: NextFunction
 ) {
+  console.log(err);
+
   //If headers already sent then defer to the default error handler
   if (res.headersSent) {
     return next(err);

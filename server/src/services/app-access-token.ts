@@ -4,25 +4,25 @@ let tokenExpiryTime: number | null = null;
 const clientId = process.env.SPOTIFY_CLIENT_ID as string;
 const clientSecret = process.env.SPOTIFY_CLIENT_SECRET as string;
 
-export function isTokenExpired() {
+export function isAppTokenExpired() {
   return tokenExpiryTime && tokenExpiryTime < Date.now();
 }
 
-export async function getAccessToken() {
-  if (token && !isTokenExpired()) {
+export async function getAppToken() {
+  if (token && !isAppTokenExpired()) {
     return token;
   } else {
-    await fetchToken();
+    await fetchAppToken();
     return token;
   }
 }
 
-export function setAccessToken(newToken: string, expiryTime: number) {
+export function setToken(newToken: string, expiryTime: number) {
   token = newToken;
   tokenExpiryTime = Date.now() + expiryTime * 1000;
 }
 
-async function fetchToken() {
+async function fetchAppToken() {
   const req = new Request("https://accounts.spotify.com/api/token", {
     method: "POST",
     headers: {
@@ -42,5 +42,7 @@ async function fetchToken() {
     throw new Error(json.error);
   }
 
-  setAccessToken(json["access_token"], json["expires_in"]);
+  setToken(json["access_token"], json["expires_in"]);
 }
+
+export async function refreshAppToken() {}
