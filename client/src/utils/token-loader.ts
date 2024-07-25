@@ -1,6 +1,6 @@
 import { redirect } from "react-router-dom";
 
-export async function fetchAccessToken({ request }: { request: Request }) {
+export async function tokenLoader({ request }: { request: Request }) {
   const url = new URL(request.url);
   const authCode = url.searchParams.get("code");
   const state = url.searchParams.get("state");
