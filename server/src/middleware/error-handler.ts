@@ -1,5 +1,11 @@
 import { Request, Response, NextFunction } from "express";
 
+type ErrData = {
+  status: number;
+  message: string;
+  stack?: string;
+};
+
 export default function errorHandler(
   err: Error,
   req: Request,
@@ -10,12 +16,21 @@ export default function errorHandler(
 
   //If headers already sent then defer to the default error handler
   if (res.headersSent) {
+    console.log("Deferring to default error handler");
     return next(err);
   }
 
   const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
   res.status(statusCode);
-  res.json({
+
+  const errData: ErrData = {
+    status: statusCode,
     message: err.message,
-  });
+  };
+
+  if (process.env.NODE_ENV === "development") {
+    errData.stack = err.stack;
+  }
+
+  res.json(errData);
 }
