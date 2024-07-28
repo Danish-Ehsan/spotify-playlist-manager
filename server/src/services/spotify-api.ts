@@ -37,7 +37,7 @@ export async function getUserProfile(token: string) {
   return json;
 }
 
-export async function getPlaylists(token: string) {
+export async function getAllPlaylists(token: string) {
   const spotifyReq = new Request(`https://api.spotify.com/v1/me/playlists`, {
     headers: {
       Authorization: `Bearer ${token}`,

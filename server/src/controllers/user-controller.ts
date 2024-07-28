@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { getPlaylists } from "../services/spotify-api";
+import { getAllPlaylists } from "../services/spotify-api";
 
 export async function userPlaylistsController(
   req: Request,
@@ -13,7 +13,7 @@ export async function userPlaylistsController(
   console.log(`userId: ${userId}`);
 
   try {
-    const playlists = await getPlaylists(token);
+    const playlists = await getAllPlaylists(token);
     console.log(res.statusCode);
     res.json(playlists);
   } catch (err) {
