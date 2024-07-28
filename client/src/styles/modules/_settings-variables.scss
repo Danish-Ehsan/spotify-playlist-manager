@@ -1,0 +1,76 @@
+// Fonts
+
+//@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Public+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+@import url("https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Lora:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Public+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Zilla+Slab:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap");
+
+$body-fonts: "Public Sans", sans-serif;
+$head-fonts: "Zilla Slab", serif;
+$icon-font: "Font Awesome 5 Pro";
+
+// Colors
+
+$key-color: #0089c5;
+$key-color-dark: darken($key-color, 8%);
+$secondary-color: #2bb673;
+$secondary-color-dark: darken($secondary-color, 5%);
+$notice-color: #00bdff;
+$warning-color: #ebd233;
+$success-color: #00b407;
+$error-color: #b92430;
+$disabled-color: #949494;
+$background-color: #252525;
+$border-color: #6e6e6e;
+$text-color: #ffffff;
+
+// Sizes
+
+$nav-height: 7.6rem; // Height of the main navigation bar
+$mobile-nav-height: 6.2rem; // Height of the main navigation bar
+$footer-height: 11rem; // Height of the main navigation bar
+$footer-margin: 14rem;
+
+$site-width: 137.8rem; // The maximum width of l-row or l-column block
+$narrow-site-width: 114.6rem; // The maximum width of l-row or l-column if you're looking for a narrow option
+$wide-site-width: 164.8rem;
+$anim-time: 0.25s; // Default transition length
+$corner-radius: 5px;
+$border-radius: $corner-radius;
+$banner-height: 100vh;
+
+$gutter-column: 3.2%;
+$gutter-row: 5rem;
+
+$padding-top: 8rem;
+$padding-right: 14rem;
+$padding-bottom: 8rem;
+$padding-left: 14rem;
+
+$mobile-padding-top: 0;
+$mobile-padding-right: 3.5rem;
+$mobile-padding-bottom: 0;
+$mobile-padding-left: 3.5rem;
+
+$base: 10;
+
+// Parallax Scrolling
+// Needs to be applied to a scrolling wrapper like l-wrapper
+//$perspective: 20px;
+
+// Mobile Breakpoints
+
+$screen-phone-up: 481px;
+$screen-phone-side: 641px;
+$screen-tablet-up: 769px;
+$screen-tablet-side: 992px;
+$screen-xl-desktop: 1500px;
+
+$phone-up: "screen and (max-width: #{$screen-phone-up})";
+$phone-side: "screen and (max-width: #{$screen-phone-side})";
+$tablet-up: "screen and (max-width: #{$screen-tablet-up})";
+$tablet-side: "screen and (max-width: #{$screen-tablet-side})";
+$xl-desktop: "screen and (max-width: #{$screen-xl-desktop})";
+
+$the-breakpoint: $tablet-up;
+$nav-breakpoint: "screen and (max-width: 1350px)";
+$securenav-breakpoint: "screen and (max-width: 1200px)";

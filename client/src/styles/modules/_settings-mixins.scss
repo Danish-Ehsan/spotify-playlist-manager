@@ -1,0 +1,33 @@
+@use "settings-variables" as *;
+@use "sass:math";
+
+@mixin base-paragraph {
+  //@include fluid(font-size, 1.6rem, 1.8rem);
+  font-size: 1.6rem;
+  line-height: 1.3;
+  font-weight: 300;
+}
+
+@mixin mquery($query) {
+  @media #{$query} {
+    @content;
+  }
+}
+
+@function strip-unit($number) {
+  @if type-of($number) == "number" and not unitless($number) {
+    @return math.div($number, ($number * 0 + 1));
+  }
+
+  @return $number;
+}
+
+@mixin fluid($property, $min-size, $max-size) {
+  $ideal-size: #{"calc( 1rem + "} calc(
+      ((strip-unit($min-size) + strip-unit($max-size)) / 2 - 1) /
+        ((strip-unit($screen-phone-side) + strip-unit($screen-xl-desktop)) / 2) *
+        1000
+    ) + vw #{")"};
+
+  #{$property}: clamp($min-size, #{$ideal-size}, $max-size);
+}

@@ -1,0 +1,81 @@
+@use "settings-variables" as *;
+@use "settings-mixins" as *;
+
+.c-btn {
+    display: inline-block;
+	width: auto;
+	padding: 1rem 3rem;
+    
+	@include fluid(font-size, 1.6rem, 2rem);
+	font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    line-height: 1.2;
+    
+    background: $key-color;
+	color: white;
+	transition: background-color $anim-time;
+    cursor: pointer;
+    appearance: none;
+	border: none;
+    border-radius: $border-radius;
+    
+    &--sm {
+        padding: 0.8rem 2.7rem;
+        @include fluid(font-size, 1.2rem, 1.6rem);
+    }
+    
+    &--lg {
+        padding: 4.5rem 10.5rem;
+        @include fluid(font-size, 2rem, 3.5rem);
+        
+        @media #{$the-breakpoint} {
+            padding: 1.8rem 3.6rem;
+            @include fluid(font-size, 1.7rem, 2.3rem);
+        }
+    }
+
+	&:hover, &:focus {
+		background-color: $key-color-dark;
+	}
+}
+
+.c-btn--light {
+    background: white;
+    color: $key-color;
+    
+    &:hover, &:focus {
+		background-color: #e6e6e6;
+	}
+}
+
+.c-btn--submit {
+	width: auto;
+	align-self: flex-end;
+	margin: 0;
+    
+    @media #{$phone-side} {
+        width: 100%;
+    }
+}
+
+.c-btn--alignbottom {
+    margin-top: auto;
+}
+
+.c-btn--link {
+    @include fluid(font-size, 1.4rem, 1.6rem);
+    font-weight: 700;
+    color: $key-color;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: block;
+
+    &:hover {
+        color: $key-color-dark;
+    }
+}
+
+p + .c-btn--link {
+    margin-top: -0.5rem;
+}

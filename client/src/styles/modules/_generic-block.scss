@@ -1,0 +1,13 @@
+@use "settings-mixins" as *;
+
+.block {
+    @include fluid(margin-top, 4.5rem, 7rem);
+}
+
+.block--fullwidth {
+    margin-top: 0;
+}
+
+.block:first-child {
+    margin-top: 0;
+}

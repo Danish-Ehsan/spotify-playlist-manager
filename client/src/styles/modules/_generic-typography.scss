@@ -1,0 +1,184 @@
+@use "settings-mixins" as *;
+@use "settings-variables" as *;
+
+p {
+  @include base-paragraph;
+  margin: 2.4rem 0;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  // @media @phone-side {
+  //     margin: 2rem 0;
+  // }
+
+  @media #{$phone-side} {
+    margin: 2rem 0;
+  }
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  font-weight: 500;
+  color: $key-color;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+h1,
+.h1 {
+  font-family: $head-fonts;
+  @include fluid(font-size, 2.8rem, 3.4rem);
+  line-height: 1.2;
+  @include fluid(margin-bottom, 3rem, 4.5rem);
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+}
+
+h2,
+.h2 {
+  font-family: $head-fonts;
+  @include fluid(font-size, 2.4rem, 3rem);
+  line-height: 1.2;
+  @include fluid(margin-bottom, 1.8rem, 2.6rem);
+}
+
+h3,
+.h3 {
+  font-family: $head-fonts;
+  @include fluid(font-size, 2.4rem, 2.8rem);
+  line-height: 1.2;
+  @include fluid(margin-bottom, 1.6rem, 2.2rem);
+}
+
+h4,
+.h4 {
+  @include fluid(font-size, 2rem, 2.4rem);
+  line-height: 1.2;
+  @include fluid(margin-bottom, 1.4rem, 2rem);
+}
+
+h5,
+.h5 {
+  @include fluid(font-size, 1.8rem, 2rem);
+  line-height: 1.2;
+  @include fluid(margin-bottom, 1.2rem, 1.8rem);
+}
+
+h6,
+.h6 {
+  @include base-paragraph;
+}
+
+//Subtitles
+h1 + h1,
+h1 + h2,
+h1 + h3 {
+  color: $secondary-color;
+  @include fluid(margin-top, -4.5rem, -3rem);
+}
+
+h2 + h2,
+h2 + h3 {
+  color: $secondary-color;
+  @include fluid(margin-top, -2.6rem, -1.8rem);
+}
+
+a:not([class]) {
+  transition: all $anim-time ease;
+
+  &:hover,
+  &:focus {
+    color: $key-color;
+  }
+}
+
+pre {
+  @include base-paragraph;
+}
+
+code {
+  display: block;
+  padding: 2rem;
+  border-radius: 1rem;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+b,
+strong {
+  font-weight: 700;
+}
+
+ul,
+ol {
+  @include base-paragraph;
+  margin: 3rem 0 0 0;
+  padding-left: 1.9rem;
+}
+
+ul li,
+ol li {
+  @include base-paragraph;
+  margin: 0 0 1rem 0;
+}
+
+blockquote {
+  position: relative;
+  padding: 0;
+  background: none;
+  margin: 0 0 0 5%;
+  @include fluid(margin-top, 4rem, 10rem);
+  @include fluid(margin-bottom, 4rem, 10rem);
+  max-width: 84rem;
+
+  font-family: $head-fonts;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+
+  p {
+    font-family: $head-fonts;
+    @include fluid(font-size, 2rem, 3rem);
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+  }
+
+  &:before {
+    content: '"';
+    @include fluid(font-size, 6rem, 10rem);
+    font-weight: 700;
+    line-height: 1;
+
+    position: absolute;
+    top: -1rem;
+    @include fluid(left, -1rem, -0.5rem);
+    transform: translateX(-100%);
+    color: $key-color;
+  }
+}

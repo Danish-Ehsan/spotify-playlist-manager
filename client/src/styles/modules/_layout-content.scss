@@ -1,0 +1,19 @@
+@use "settings-variables" as *;
+
+.l-content {
+	position: relative;
+	width: 100%;
+	max-width: $site-width;
+}
+
+.l-content--wide {
+    max-width: $wide-site-width;
+}
+
+.l-content--narrow {
+	max-width: $narrow-site-width;
+}
+
+.l-content--fullwidth {
+	max-width: none;
+}

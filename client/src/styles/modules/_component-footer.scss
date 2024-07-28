@@ -1,0 +1,358 @@
+@use "settings-variables" as *;
+@use "settings-mixins" as *;
+@use "layout-grid" as *;
+
+.c-footer {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; // For Sticky Footer
+    /*height: $footer-height;*/
+    
+    padding: 9.5rem $padding-right 5rem $padding-left;
+    background-color: $key-color;
+    color: #ffffff;
+  
+    @media #{$tablet-side} {
+        padding: 10rem 6.2rem;
+    }
+
+    @media #{$the-breakpoint} {
+        padding: 6rem 6.2rem;
+    }
+    
+    @media #{$phone-side} {
+          padding: 6.4rem $mobile-padding-left 6.2rem $mobile-padding-right;
+    }
+}
+
+.c-footer__content {
+    @extend .l-grid;
+    align-items: flex-end;
+
+    width: 100%;
+    max-width: $site-width;
+}
+
+.c-footer__col {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
+    &--contact {
+        p {
+            @include fluid(font-size, 1.4rem, 1.6rem);
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+
+            &:hover, &:focus {
+                color: white;
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.c-footer__col--logo {
+    @media #{$phone-side} {
+        align-items: left;
+    }
+}
+
+.c-footer__logo {
+    width: 100%;
+    max-width: min(28rem, 80%);
+    display: flex;
+
+    img {
+        width: 100%;
+    }
+
+    @media #{$phone-side} {
+        max-width: min(24rem, 80%);
+    }
+}
+
+.c-footer__col--contact {
+    @media #{$phone-side} {
+        text-align: left;
+    }
+}
+
+.c-footer__col--socials {
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 2rem;
+
+    a {
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    .dashicons {
+        height: auto;
+        width: auto;
+        font-size: 4rem;
+    }
+
+    a:hover .dashicons {
+        color: $key-color-dark;
+    }
+
+    @media #{$tablet-side} {
+        column-gap: 1.5rem;
+
+        .dashicons {
+            font-size: 3.2rem;
+        }
+    }
+
+    @media #{$phone-side} {
+        justify-content: left;
+    }
+
+}
+
+.c-footer__nav__dropdown {
+    display: none;
+}
+
+.c-footer__nav__list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    column-gap: 4rem;
+    row-gap: 1.8rem;
+    
+    &--dropdown {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .has-dropdown:hover > a, 
+    .has-dropdown:focus > a, 
+    .has-dropdown:focus-within > a {
+        color: $text-color;
+    }
+    
+    .has-dropdown > a:hover,
+    .has-dropdown > a:focus {
+        color: $key-color-dark;
+    }
+    
+    @media #{$tablet-up} {
+        grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+        grid-area: nav;
+        
+        &:not(.c-footer__nav__list--dropdown) {
+            margin-top: 5rem;
+        }
+    }
+    
+    @media #{$phone-side} {
+        justify-content: center;
+        column-gap: 3rem;
+        row-gap: 1.4rem;
+    }
+    
+}
+
+.c-footer__nav__item {
+    margin: 0;
+    
+    &--dropdown {
+        line-height: 1.3;
+        
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.c-footer__nav__btn {
+    @include fluid(font-size, 1.4rem, 2.2rem);
+    font-weight: 700;
+    color: $text-color;
+    text-decoration: none;
+    line-height: 1.3;
+    
+    position: relative;
+    display: block;
+    transition: color $anim-time ease;
+    
+    &--dropdown {
+        font-weight: 300;
+        margin: 0;
+    }
+    
+    &:hover, &:focus {
+        color: $key-color-dark;
+    }
+}
+
+.c-footer__nav__list--services {
+    display: block;
+    margin-top: 6rem;
+    
+    h3 {
+        @include fluid(font-size, 1rem, 1.8rem);
+        font-weight: 700;
+        margin-bottom: 0;
+    }
+    
+    .c-footer__nav__list--dropdown {
+        flex-direction: row;
+        flex-wrap: wrap;
+        column-gap: 2rem;
+    }
+    
+    @media #{$phone-side} {
+        display: block;
+        
+        .c-footer__nav__list--dropdown {
+            display: flex;
+        }
+    }
+}
+
+.c-footer__secondarynav {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 2.1rem;
+    row-gap: 1rem;
+    
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    li {
+        line-height: 1.2;
+        margin: 0;
+    }
+    
+    a {
+        text-decoration: none;
+        color: $text-color;
+        font-weight: 500;
+        font-size: 1.2rem;
+        
+        transition: color $anim-time ease;
+        
+        &:hover, &:focus {
+            color: $key-color-dark;
+        }
+    }
+    
+    @media #{$phone-side} {
+        a {
+            font-size: 0.9rem;
+        }
+    }
+}
+
+.c-footer__contact {
+    margin-bottom: 3rem;
+    
+    p {
+        margin: 0 0 0.3rem;
+        @include fluid(font-size, 1.4rem, 1.6rem);
+        font-weight: 700;
+        line-height: 1.4;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+
+    @media #{$the-breakpoint} {
+        margin-bottom: 1.5rem;
+    }
+    
+    @media #{$phone-side} {
+        text-align: left;
+    }
+}
+
+.c-footer__contact__highlight {
+    margin-bottom: 1.8rem;
+    
+    p {
+        @include fluid(font-size, 1.8rem, 4rem);
+    }
+    
+    a {
+        color: $text-color;
+    }
+}
+
+.c-footer__copyright {
+    width: 100%;
+    margin-top: 5.4rem;
+    
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 1.4;
+    
+    @media #{$phone-side} {
+        font-size: 0.9rem;
+    }
+}
+
+.c-footer__copyright__content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
+    
+    @media #{$phone-side} {
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+.c-footer__recaptcha {
+    margin-top: 0.6rem;
+    font-size: 1.2rem;
+    
+    @media #{$phone-side} {
+        font-size: 0.9rem;
+    }
+}
+
+.c-footer__copyright__links {
+    display: flex;
+    column-gap: 2rem;
+    row-gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    
+    li {
+        line-height: 1.2;
+        margin: 0;
+    }
+    
+    a {
+        text-decoration: none;
+        font-size: 1.4rem;
+        
+        &:hover, &:focus {
+            color: $key-color-dark;
+        }
+    }
+    
+    @media #{$phone-side} {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

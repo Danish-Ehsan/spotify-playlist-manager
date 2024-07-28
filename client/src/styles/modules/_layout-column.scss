@@ -1,0 +1,8 @@
+@use "layout-row" as *;
+
+// styles matched to .l-row, except for flex direction
+
+.l-column {
+    @extend .l-row;
+	flex-direction: column;
+}

@@ -1,0 +1,15 @@
+@use "settings-variables" as *;
+
+.u-bkgimg {
+    background-repeat: no-repeat;
+    background-size: 60% auto;
+    background-position: -10% 100%;
+
+    &--right {
+        background-position: 110% 100%;
+    }
+
+    @media #{$phone-side} {
+        background-size: 150% auto;
+    }
+}

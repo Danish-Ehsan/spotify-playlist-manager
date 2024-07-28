@@ -1,35 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-function App() {
-  const [count, setCount] = useState(0)
+import Root from "./routes/Root.tsx";
+import ErrorPage from "./pages/ErrorPage.tsx";
+import Home from "./routes/Home.tsx";
+import Playlists, { loader as playlistsLoader } from "./routes/Playlists.tsx";
+import { tokenLoader } from "./utils/token-loader.ts";
+import Login from "./routes/Login.tsx";
+import NotFound from "./pages/NotFound.tsx";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    children: [
+      {
+        errorElement: <ErrorPage />,
+        children: [
+          {
+            index: true,
+            element: <Home />,
+          },
+          {
+            path: "get-access-token",
+            loader: tokenLoader,
+          },
+          {
+            path: "playlists",
+            element: <Playlists />,
+            loader: playlistsLoader,
+          },
+          {
+            path: "user",
+            loader: async () => {
+              return await fetch("/api/user");
+            },
+          },
+          {
+            path: "login",
+            element: <Login />,
+          },
+          {
+            path: "*",
+            element: <NotFound />,
+          },
+        ],
+      },
+    ],
+  },
+]);
+
+export default function App() {
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <RouterProvider router={router} />
     </>
-  )
+  );
 }
-
-export default App

@@ -1,0 +1,29 @@
+@use "settings-variables" as *;
+@use "settings-mixins" as *;
+
+.c-main {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-grow: 1; //for sticky footer
+  flex-shrink: 0;
+  padding: $padding-top $padding-right $padding-bottom $padding-left;
+  //@include fluid(margin-bottom, 5.5rem, 7rem);
+
+  @media #{$tablet-side} {
+    padding: 0 6.2rem;
+  }
+
+  //use mobile padding variables at smaller screen sizes
+  @media #{$phone-side} {
+    padding: $mobile-padding-top $mobile-padding-right $mobile-padding-bottom
+      $mobile-padding-left;
+  }
+}
+
+// .c-main > *:last-child {
+//     @include fluid(padding-bottom, 4.5rem, 7rem);
+// }

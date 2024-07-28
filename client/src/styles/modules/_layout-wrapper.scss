@@ -1,0 +1,19 @@
+@use "settings-variables" as *;
+@use "settings-mixins" as *;
+
+.l-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 1 0 auto; // For Sticky Footer
+    width: 100%;
+    min-height: auto;
+    position: relative;
+    min-height: 100%;
+
+    @include base-paragraph;
+    
+    @media #{$phone-up} {
+        padding-top: 0;
+    }
+}

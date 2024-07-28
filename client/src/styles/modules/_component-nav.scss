@@ -1,0 +1,523 @@
+@use "settings-variables" as *;
+@use "settings-mixins" as *;
+
+/* 
+
+nav.c-nav
+	ul.c-nav__list
+		li.c-nav__item
+			a.c-nav__btn + div.c-dropdown
+							ul.c-nav__list--dropdown
+								li.c-nav__item.c-nav__item--dropdown
+								a.c-nav__btn.c-nav__btn--dropdown
+
+*/
+
+.c-nav {
+  position: relative;
+  margin-left: auto; // pushes nav list to the right
+  padding: 0.6rem 2rem;
+
+  display: flex;
+  align-self: flex-end;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+
+  @media #{$nav-breakpoint} {
+    position: fixed;
+    right: 110vw;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    background: #ffffff;
+    overflow: auto;
+    padding: 25rem 3.5rem 2rem;
+    transition: left 0.2s;
+    z-index: 20;
+    pointer-events: none;
+    transform: none;
+    transition: right 0.2s linear 0.15s;
+
+    /*        &:after {
+            content: '';
+            position: fixed;
+            left: 110vw;
+            top: 0;
+            width: 100%;
+            height: 16rem;
+            background: @secondary-color;
+            z-index: 11;
+            transition: left 0.2s;
+        }*/
+
+    &.is-visible {
+      right: 0;
+      //opacity: 1;
+      pointer-events: auto;
+
+      /*            &:after {
+                left: 0;
+                transition: left 0.2s linear 0.15s;
+            }*/
+    }
+  }
+
+  @media #{$phone-side} {
+    padding-top: 17rem;
+
+    &:after {
+      height: 10rem;
+    }
+  }
+}
+
+.c-nav__list {
+  position: relative;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  transform-style: unset; //needed to postion c-nav__dropdown correctly
+
+  display: flex;
+  align-items: center;
+  overflow: visible;
+
+  @media #{$nav-breakpoint} {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+}
+
+// Style the hover and focus for the links. Will persist on dropdown hover.
+// .c-nav__list:not(.c-nav__list--dropdown) > .c-nav__item:hover,
+// .c-nav__list:not(.c-nav__list--dropdown) > .c-nav__item:focus,
+// .c-nav__list:not(.c-nav__list--dropdown) > .c-nav__item:focus-within {
+
+// 	> .c-nav__btn {
+//         color: $secondary-color;
+// 	}
+
+//     @media #{$nav-breakpoint} {
+//         color: white;
+//     }
+// }
+
+// Style the dropdown list <ul>
+.c-nav__list--dropdown {
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  text-align: left;
+  color: $text-color;
+
+  @media #{$nav-breakpoint} {
+    box-shadow: none;
+    padding: 0;
+  }
+}
+
+// Style the dropdown parent <div>
+.c-nav__dropdown {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  text-align: center;
+  height: auto;
+  width: auto;
+
+  padding: 2rem;
+  border-radius: #{$border-radius};
+  z-index: 11;
+  transition-delay: 1s;
+  transition: top $anim-time ease-in-out, opacity $anim-time ease-in-out;
+  opacity: 0;
+  visibility: none;
+  pointer-events: none;
+  background: $key-color;
+
+  @media #{$nav-breakpoint} {
+    //display: none;
+    position: relative;
+    background: none;
+    top: auto;
+    left: auto;
+    pointer-events: auto;
+    opacity: 1;
+    visibility: visible;
+    box-shadow: none;
+    padding: 0;
+    transform: none;
+    width: 100%;
+    padding-top: 0rem;
+    padding-bottom: 0.5rem;
+  }
+
+  ul,
+  li,
+  a {
+    margin-left: 0;
+    text-decoration: none;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.c-nav__item:last-of-type .c-nav__dropdown {
+  left: auto;
+  right: 0;
+  transform: none;
+}
+
+// Trigger the dropdown when hovering/focusing the list element
+
+.has-dropdown:hover,
+.has-dropdown:focus,
+.has-dropdown:focus-within,
+.has-dropdown.testing,
+.has-dropdown.is-active {
+  & > a {
+    color: $key-color;
+  }
+
+  .c-nav__dropdown,
+  .c-nav__dropdown:hover {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+.has-dropdown:focus,
+.has-dropdown.is-active {
+  .c-nav__dropdown {
+    @media #{$nav-breakpoint} {
+      display: block;
+    }
+  }
+}
+
+.c-nav__dropdown__content {
+  display: flex;
+  align-items: stretch;
+  background-color: white;
+  margin-top: 1rem;
+  box-shadow: 0 0.6rem 1rem -0.5rem rgba(0, 0, 0, 0.5),
+    0px 2.2rem 2rem 0rem rgba(0, 0, 0, 0.25);
+
+  @media #{$nav-breakpoint} {
+    box-shadow: none;
+    margin: 0;
+    min-height: 0;
+    background: transparent;
+  }
+}
+
+.c-nav__item {
+  margin: 0;
+  position: relative;
+
+  @media #{$tablet-side} {
+  }
+
+  @media #{$nav-breakpoint} {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0rem;
+
+    &:last-child:not(.c-nav__item--dropdown) {
+      //padding-bottom: 2rem;
+    }
+  }
+}
+
+.c-nav__item--dropdown {
+  margin: 0 0 0 0;
+  position: relative;
+  transition: all 0.35s ease;
+  pointer-events: none;
+  will-change: transform;
+
+  @media #{$nav-breakpoint} {
+    text-align: center;
+    margin: 0.5rem 0;
+    opacity: 1;
+    transform: translateY(0) !important; //override JS inline style
+  }
+}
+
+.c-nav__item.has-dropdown {
+  &:hover,
+  &:focus,
+  &:focus-within {
+    .c-nav__item--dropdown {
+      transform: translateY(0px) !important; //override JS inline style
+      pointer-events: auto;
+    }
+
+    @media #{$nav-breakpoint} {
+      background: none;
+    }
+  }
+}
+
+// .c-nav__item.has-dropdown {
+
+// 	@media #{$nav-breakpoint} {
+
+//         & > a::before {
+//             content: '+';
+//             position: absolute;
+//             left: 0.8rem;
+//         }
+
+//         &.is-active > a::before {
+//             content: '-';
+//         }
+// 	}
+// }
+
+.c-nav__item--secure.has-dropdown {
+  &::after {
+    color: black;
+    top: -0.4rem;
+  }
+}
+
+.c-nav__btn {
+  // All buttons within the navigation
+  position: relative;
+  display: block;
+
+  font-size: 1.7rem;
+  font-weight: 500;
+  text-align: center;
+  font-family: $head-fonts;
+  text-decoration: none;
+  color: $key-color;
+  line-height: 1.2;
+
+  padding: 1.1rem 2.1rem;
+  transition: all $anim-time;
+
+  &:hover,
+  &:focus,
+  &.active {
+    color: $secondary-color;
+  }
+
+  @media #{$tablet-side} {
+    font-size: 1.4rem;
+  }
+
+  @media #{$nav-breakpoint} {
+    margin-left: 0;
+    white-space: normal;
+    text-align: center;
+
+    &:not(.c-nav__btn--dropdown) {
+      @include fluid(font-size, 2rem, 3rem);
+    }
+  }
+}
+
+@media #{$nav-breakpoint} {
+  .c-nav__item.is-active .c-nav__dropdown {
+    display: block;
+  }
+}
+
+.c-nav__item.is-selected > .c-nav__btn {
+  color: $secondary-color;
+}
+
+.c-nav__list--dropdown .c-nav__btn {
+  // The links inside the dropdown
+  line-height: 1.2;
+  color: white;
+  text-transform: none;
+  text-align: center;
+  border-radius: $border-radius;
+
+  padding: 0.5rem 1.3rem;
+  margin: 0;
+  transition: background $anim-time;
+
+  span {
+    display: block;
+    font-weight: 300;
+    margin-top: 0.25rem;
+    font-size: 1.6rem;
+    font-weight: 300;
+    font-family: $body-fonts;
+    color: $text-color;
+
+    @media #{$nav-breakpoint} {
+      display: none;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    background: $key-color-dark;
+  }
+
+  @media #{$nav-breakpoint} {
+    padding: 0;
+    margin: 0;
+    font-size: 1.8rem;
+    //font-weight: normal;
+    color: $key-color;
+    background: transparent;
+
+    &:hover,
+    &:focus {
+      background: transparent;
+    }
+  }
+
+  @media #{$phone-up} {
+    font-size: 1.6rem;
+  }
+}
+
+.c-nav__item.current-menu-parent > .c-nav__btn {
+  color: $secondary-color;
+}
+
+.c-nav__item.has-dropdown .c-nav__item.is-selected > .c-nav__btn {
+  color: white;
+  background: $key-color-dark;
+
+  @media #{$nav-breakpoint} {
+    color: $secondary-color;
+    background: transparent;
+  }
+}
+
+.c-nav__show {
+  // Hamburger menu visible in mobile
+  appearance: none;
+  border: none;
+  background: none;
+  outline: none;
+  position: relative;
+  display: none;
+  color: $key-color;
+  cursor: pointer;
+  padding: 1rem 0 1rem 1rem;
+  //font-size: 1.0rem;
+
+  @media #{$nav-breakpoint} {
+    display: block;
+    margin-left: 2rem;
+    z-index: 20;
+  }
+}
+
+.c-nav__showbtn {
+  position: relative;
+  width: 2.1rem;
+  height: 1.4rem;
+  transition: transform 0.1s linear;
+}
+
+.c-nav__showbtn-line {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 3px;
+  background-color: $key-color;
+  //transition: all @anim-time;
+  transform-origin: 50% 50%;
+  transition-property: top, background-color, transform;
+  transition-duration: 0.1s;
+  transition-delay: 0.2s, 0.2s, 0s;
+  transition-timing-function: linear;
+
+  &:first-of-type {
+    top: 0;
+  }
+
+  &:last-of-type {
+    top: 100%;
+  }
+}
+
+.c-nav__show.is-open {
+  .c-nav__showbtn {
+    transform: rotate(90deg);
+    transition: transform 0.1s linear 0.2s;
+  }
+
+  .c-nav__showbtn-line {
+    transition-delay: 0s, 0.2s, 0.2s;
+
+    &:first-of-type {
+      top: 50%;
+      transform: rotate(45deg);
+    }
+
+    &:nth-of-type(2) {
+      top: 50%;
+      transform: rotate(45deg);
+    }
+
+    &:last-of-type {
+      top: 50%;
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+.c-nav__search {
+  margin: 0 0 0 2rem;
+}
+
+.c-nav--admin {
+  display: flex;
+  list-style: none;
+  margin-top: 1rem;
+  padding-left: 0;
+}
+
+.c-nav__item--admin {
+  margin: 0;
+}
+
+.c-nav__btn--admin {
+  margin: 0 1rem 0 0;
+  padding: 0;
+  color: #0000ee;
+  font-weight: 400;
+  text-decoration: underline;
+
+  @media #{$nav-breakpoint} {
+    font-size: 1.6rem;
+  }
+}
+
+.c-nav__item--admin:last-of-type .c-nav__btn--admin {
+  margin: 0;
+}
+
+.c-nav__btn--username {
+  color: $text-color;
+  text-decoration: none;
+}

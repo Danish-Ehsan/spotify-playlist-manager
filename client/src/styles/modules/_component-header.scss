@@ -1,0 +1,96 @@
+@use "settings-variables" as *;
+@use "settings-mixins" as *;
+
+.c-header__cont {
+  width: 100%;
+  position: sticky;
+}
+
+.c-header {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding: 3rem 9rem 3rem 11rem;
+  background: #100121;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-shrink: 0;
+
+  z-index: 9;
+
+  @media #{$nav-breakpoint} {
+    padding-left: $padding-left;
+    padding-right: $padding-right;
+  }
+
+  @media #{$tablet-side} {
+    padding: 2.6rem 6.2rem;
+  }
+
+  @media #{$phone-side} {
+    padding: 2.6rem $mobile-padding-right 2.6rem $mobile-padding-left;
+  }
+
+  @media screen and (max-width: 365px) {
+    padding-left: 2rem;
+  }
+}
+
+.c-header__content {
+  max-width: 192rem;
+  align-items: center;
+  column-gap: 8rem;
+
+  @media #{$the-breakpoint} {
+    flex-direction: row;
+    align-self: stretch;
+    transform: none;
+    column-gap: 2rem;
+  }
+}
+
+.c-header__logo {
+  display: flex;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+  @include fluid(width, 8rem, 12rem);
+  overflow: hidden;
+  transition: width 0.5s cubic-bezier(0.77, 0.23, 0.31, 0.75);
+  z-index: 21;
+
+  img {
+    max-width: none;
+    width: 100%;
+    height: auto;
+  }
+
+  @media #{$nav-breakpoint} {
+    line-height: 0;
+  }
+
+  @media #{$phone-side} {
+    width: auto;
+    max-width: 20rem;
+    flex-shrink: 1;
+  }
+
+  @media screen and (max-width: 340px) {
+    //max-width: 12rem;
+  }
+}
+
+.c-header__nav-cont {
+  justify-content: flex-end;
+  position: relative;
+  top: 1.1rem;
+
+  @media #{$nav-breakpoint} {
+    top: 0.3rem;
+    align-items: flex-end;
+  }
+}

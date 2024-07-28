@@ -1,0 +1,27 @@
+@use "settings-variables" as *;
+
+.l-section {
+	width: calc(100% + $padding-left + $padding-right); // ignore global padding
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 0 $padding-right 0 $padding-left; // apply global padding so it all lines up
+    
+    @media #{$tablet-side} {
+        width: calc(100% + 12.4rem);
+        padding-left: 6.2rem;
+        padding-right: 6.2rem;
+    }
+    
+    //use mobile padding variables at smaller screen sizes
+    @media #{$phone-side} {
+        width: calc(100% + $mobile-padding-left + $mobile-padding-right); // ignore global padding
+        padding-left: $mobile-padding-left;
+        padding-right: $mobile-padding-right;
+    }
+    
+    &--nopadding {
+        padding: 0;
+    }
+}

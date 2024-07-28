@@ -1,0 +1,54 @@
+@use "settings-variables" as *;
+
+.l-grid { 
+    display: grid;
+    position: relative;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: $gutter-column;
+    row-gap: $gutter-row;
+    padding: 0;
+    margin: 0;
+
+    @media #{$the-breakpoint} {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @media #{$phone-side} {
+        grid-template-columns: 1fr;
+    }
+}
+
+.l-grid--3col { 
+    display: grid;
+    position: relative;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 5%;
+    row-gap: 5rem;
+    padding: 0;
+    margin: 0;
+
+    @media screen and (max-width: 1000px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @media #{$phone-side} {
+        grid-template-columns: 1fr;  
+    }
+}
+
+.l-grid--2col { 
+    display: grid;
+    position: relative;
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 5%;
+    row-gap: 5rem;
+    padding: 0;
+    margin: 0;
+    
+    @media #{$phone-side} {
+        grid-template-columns: 1fr;  
+    }
+}
