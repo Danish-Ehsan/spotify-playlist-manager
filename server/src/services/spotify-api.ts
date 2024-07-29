@@ -56,3 +56,25 @@ export async function getAllPlaylists(token: string) {
 
   return json;
 }
+
+export async function getPlaylist(token: string, playlistId: string) {
+  const spotifyReq = new Request(
+    `https://api.spotify.com/v1/playlists/${playlistId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  const spotifyRes = await fetch(spotifyReq);
+
+  if (!spotifyRes.ok) {
+    const spotifyError = await spotifyRes.json();
+    throw new Error(spotifyError.message);
+  }
+
+  const json = await spotifyRes.json();
+
+  return json;
+}

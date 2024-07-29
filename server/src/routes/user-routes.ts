@@ -1,6 +1,9 @@
 import express from "express";
 import { authenticateUser } from "../middleware/authenticate-user";
-import { userPlaylistsController } from "../controllers/user-controller";
+import {
+  userPlaylistController,
+  userPlaylistsController,
+} from "../controllers/user-controller";
 
 const router = express.Router();
 
@@ -11,5 +14,6 @@ router.get("/", (req, res) => {
 });
 
 router.get("/playlists", userPlaylistsController);
+router.get("/playlist/:playlistId", userPlaylistController);
 
 export default router;

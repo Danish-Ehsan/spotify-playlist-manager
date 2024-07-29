@@ -7,6 +7,7 @@ import Playlists, { loader as playlistsLoader } from "./routes/Playlists.tsx";
 import { tokenLoader } from "./utils/token-loader.ts";
 import Login from "./routes/Login.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import Playlist, { loader as playlistLoader } from "./routes/Playlist.tsx";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
             path: "playlists",
             element: <Playlists />,
             loader: playlistsLoader,
+          },
+          {
+            path: "playlist/:playlistId",
+            element: <Playlist />,
+            loader: playlistLoader,
           },
           {
             path: "user",
