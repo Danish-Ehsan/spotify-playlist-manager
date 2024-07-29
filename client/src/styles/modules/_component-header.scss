@@ -54,14 +54,25 @@
 
 .c-header__logo {
   display: flex;
+  flex-direction: column;
   position: relative;
   margin: 0;
   padding: 0;
   flex-shrink: 0;
-  @include fluid(width, 8rem, 12rem);
+  @include fluid(width, 6rem, 8rem);
   overflow: hidden;
   transition: width 0.5s cubic-bezier(0.77, 0.23, 0.31, 0.75);
   z-index: 21;
+  text-decoration: none;
+
+  p {
+    margin-top: 1rem;
+    text-align: center;
+    color: #66d1df;
+    text-transform: uppercase;
+    @include fluid(font-size, 0.8rem, 1rem);
+    font-weight: 900;
+  }
 
   img {
     max-width: none;

@@ -7,6 +7,7 @@ export default function Header() {
     <header className="c-header">
       <Link to="/" className="c-header__logo">
         <img src={logo} alt="Logo" />
+        <p>Spotify Playlist Manager</p>
       </Link>
       <Nav />
     </header>

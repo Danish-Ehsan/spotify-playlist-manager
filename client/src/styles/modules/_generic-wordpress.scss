@@ -3,71 +3,70 @@
 @use "component-btn" as *;
 
 .entry-header {
-    @include fluid(margin-top, 6rem, 10rem);
+  @include fluid(margin-top, 6rem, 10rem);
 }
 
-.entry-header + *, .entry-header + *:first-of-type {
-    @include fluid(margin-top, 4.5rem, 7rem);
+.entry-header + *,
+.entry-header + *:first-of-type {
+  @include fluid(margin-top, 4.5rem, 7rem);
 }
 
 .entry-title {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .entry-meta {
-    margin-top: 2rem;
-    line-height: 1.5;
+  margin-top: 2rem;
+  line-height: 1.5;
 }
 
 .entry-footer {
-    margin-top: 5rem;
+  margin-top: 5rem;
 }
 
-.c-main > *:not(.block) {
-    //max-width: $narrow-site-width;
-    //margin-right: auto;
-    
-    //display: flex;
-    //max-width: $narrow-site-width;
-    //width: 100%;
-}
+// .c-main > *:not(.block) {
+//     max-width: $narrow-site-width;
+//     margin-right: auto;
 
+//     display: flex;
+//     max-width: $narrow-site-width;
+//     width: 100%;
+// }
 
 .c-main {
-    & > *:not(.block) {
-        max-width: $site-width;
-        width: 100%;
-    }
+  & > *:not(.block) {
+    max-width: $site-width;
+    width: 100%;
+  }
 
-    .wp-block-button__link {
-        @extend .c-btn;
-    }
-
-
+  .wp-block-button__link {
+    @extend .c-btn;
+  }
 }
 
 //Edit page link
 
 .edit-link {
-    margin-top: 3rem;
-    display: block;
+  margin-top: 3rem;
+  display: block;
 }
-
 
 //Post Navigation
 
 .nav-links {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    column-gap: 3rem;
-    row-gap: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  column-gap: 3rem;
+  row-gap: 1.5rem;
 }
 
-.nav-previous a, .nav-next a {
-    @extend .c-btn, .c-btn--sm;
+.nav-previous a,
+.nav-next a {
+  @extend .c-btn, .c-btn--sm;
 
-    &:hover, &:focus {
-        color: white;
-    }
+  &:hover,
+  &:focus {
+    color: white;
+  }
 }
