@@ -1,13 +1,13 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Root from "./routes/Root.tsx";
-import ErrorPage from "./pages/ErrorPage.tsx";
-import Home from "./routes/Home.tsx";
-import Playlists, { loader as playlistsLoader } from "./routes/Playlists.tsx";
+import Root from "./routes/root.tsx";
+import ErrorPage from "./pages/error-page.tsx";
+import Home from "./routes/home.tsx";
+import Playlists, { loader as playlistsLoader } from "./routes/playlists.tsx";
 import { tokenLoader } from "./utils/token-loader.ts";
-import Login from "./routes/Login.tsx";
-import NotFound from "./pages/NotFound.tsx";
-import Playlist, { loader as playlistLoader } from "./routes/Playlist.tsx";
+import Login from "./routes/login.tsx";
+import NotFound from "./pages/not-found.tsx";
+import Playlist, { loader as playlistLoader } from "./routes/playlist.tsx";
 
 const router = createBrowserRouter([
   {
