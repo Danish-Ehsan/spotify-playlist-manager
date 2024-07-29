@@ -20,7 +20,7 @@ export default function Playlists() {
 
   const playlistCards = playlists.items.map((playlist) => {
     return (
-      <article className="c-card">
+      <article className="c-card" key={playlist.id}>
         <a
           href={`/playlist/${playlist.id}`}
           className="c-card__link"
@@ -42,6 +42,7 @@ export default function Playlists() {
     <section className="l-content">
       <h1>Playlists</h1>
       <section className="l-grid">{playlistCards}</section>
+      <h2>Raw data</h2>
       <pre>
         <code>{JSON.stringify(playlists, null, 3)}</code>
       </pre>
