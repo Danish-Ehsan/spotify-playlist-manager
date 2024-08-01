@@ -4,7 +4,6 @@ export async function loader() {
   const res = await fetch("/api/user/playlists");
 
   if (!res.ok) {
-    //throw new Error(res.statusText);
     const errorData = await res.json();
     throw errorData;
   }
