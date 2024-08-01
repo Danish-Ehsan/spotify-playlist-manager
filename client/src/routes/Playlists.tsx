@@ -14,8 +14,8 @@ export async function loader() {
 }
 
 export default function Playlists() {
-  //TODO: Create type for playlists
-  const playlists = useLoaderData();
+  const playlists =
+    useLoaderData() as SpotifyApi.ListOfCurrentUsersPlaylistsResponse;
 
   const playlistCards = playlists.items.map((playlist) => {
     return (

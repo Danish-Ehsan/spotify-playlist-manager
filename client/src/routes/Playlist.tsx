@@ -13,8 +13,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
 }
 
 export default function Playlist() {
-  //TODO: Create type for playlist
-  const playlist = useLoaderData();
+  const playlist = useLoaderData() as SpotifyApi.SinglePlaylistResponse;
 
   return (
     <section className="l-content">
