@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 
 export async function loader() {
   const res = await fetch("/api/user/playlists");
@@ -21,8 +21,8 @@ export default function Playlists() {
   const playlistCards = playlists.items.map((playlist) => {
     return (
       <article className="c-card" key={playlist.id}>
-        <a
-          href={`/playlist/${playlist.id}`}
+        <Link
+          to={`/playlist/${playlist.id}`}
           className="c-card__link"
           aria-label={`Go to ${playlist.name} playlist`}
         >
@@ -33,7 +33,7 @@ export default function Playlists() {
             <h3 className="c-card__title">{playlist.name}</h3>
             <p className="c-card__summary">{playlist.tracks.total} tracks</p>
           </div>
-        </a>
+        </Link>
       </article>
     );
   });
