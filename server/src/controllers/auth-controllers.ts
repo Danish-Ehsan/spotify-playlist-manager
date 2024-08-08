@@ -86,7 +86,7 @@ export async function refreshTokenController(
         const refreshToken = decoded;
 
         try {
-          const spotifyToken = await refreshUserToken(refreshToken + "blue");
+          const spotifyToken = await refreshUserToken(refreshToken);
 
           console.log(spotifyToken.access_token);
           console.log(spotifyToken);
