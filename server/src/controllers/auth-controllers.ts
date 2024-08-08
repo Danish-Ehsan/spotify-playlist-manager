@@ -28,8 +28,8 @@ export async function getTokenController(
         data: spotifyToken.access_token,
       },
       jwtSecret,
-      //{ expiresIn: spotifyToken.expires_in }
-      { expiresIn: 1 }
+      { expiresIn: spotifyToken.expires_in }
+      //{ expiresIn: 1 }
     );
 
     const refreshTokenPromise = signTokenPromise(
