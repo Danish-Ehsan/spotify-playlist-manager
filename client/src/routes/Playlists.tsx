@@ -1,14 +1,23 @@
-import { useLoaderData, Link } from "react-router-dom";
+import { useLoaderData, Link, LoaderFunctionArgs } from "react-router-dom";
+import refreshToken from "../utils/refresh-token";
 
-export async function loader() {
+export async function loader({ request }: LoaderFunctionArgs) {
+  console.log("Playlists loader firing");
   const res = await fetch("/api/user/playlists");
 
-  if (!res.ok) {
+  if (res.status === 403) {
+    const url = new URL(request.url);
+
+    return refreshToken(url.pathname);
+  } else if (!res.ok) {
     const errorData = await res.json();
+    errorData.url = request.url;
     throw errorData;
   }
 
   const json = await res.json();
+
+  console.log(json);
 
   return json;
 }

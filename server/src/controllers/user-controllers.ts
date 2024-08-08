@@ -8,9 +8,6 @@ export async function userPlaylistsController(
 ) {
   console.log("userPlaylistsController firing");
   const token = req.accessToken as string;
-  const userId = req.user?.id as string;
-
-  console.log(`userId: ${userId}`);
 
   try {
     const playlists = await getAllPlaylists(token);

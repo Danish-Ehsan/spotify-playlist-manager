@@ -12,6 +12,7 @@ export default function errorHandler(
   res: Response,
   next: NextFunction
 ) {
+  console.log("Custom Error Handler firing");
   console.log(err);
 
   //If headers already sent then defer to the default error handler

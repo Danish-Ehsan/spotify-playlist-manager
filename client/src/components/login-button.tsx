@@ -1,5 +1,7 @@
 import generateRandomString from "../utils/generate-random-string";
 
+//LoginButton redirects to the Spotify login page
+//On approval, the Spotify login page redirects to /get-access-token
 export default function LoginButton() {
   const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID as string;
   const state = generateRandomString(8);

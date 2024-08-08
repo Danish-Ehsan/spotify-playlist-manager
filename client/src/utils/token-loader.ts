@@ -1,6 +1,6 @@
-import { redirect } from "react-router-dom";
+import { login } from "./auth";
 
-export async function tokenLoader({ request }: { request: Request }) {
+export default async function tokenLoader({ request }: { request: Request }) {
   const url = new URL(request.url);
   const authCode = url.searchParams.get("code");
   const state = url.searchParams.get("state");
@@ -12,27 +12,15 @@ export async function tokenLoader({ request }: { request: Request }) {
     throw new Error(error);
   }
 
+  //Compare local state variable with the Spotify return state as a recommended security step
   if (!state || state !== localStorage.getItem("spotify_auth_state")) {
-    throw new Error("State mismatch");
+    throw new Error("Spotify auth state mismatch");
   }
 
-  const req = new Request("/api/token", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      code: authCode,
-    }),
-  });
-
-  //response sets JWT cookie
-  const res = await fetch(req);
-
-  if (!res.ok) {
-    const json = await res.json();
-    throw new Error(json.message);
+  if (authCode) {
+    //login() returns a redirect() on success
+    return login(authCode);
   }
 
-  return redirect("/playlists");
+  return null;
 }
