@@ -20,6 +20,7 @@ export async function getArtist(artistId: string) {
 }
 
 export async function getUserProfile(token: string) {
+  console.log(`Token: ${token}`);
   const req = new Request("https://api.spotify.com/v1/me", {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -29,6 +30,8 @@ export async function getUserProfile(token: string) {
   const res = await fetch(req);
 
   if (!res.ok) {
+    const err = await res.text();
+    console.log(err);
     throw new Error(res.statusText);
   }
 
@@ -60,6 +63,7 @@ export async function getAllPlaylists(token: string) {
 export async function getPlaylist(token: string, playlistId: string) {
   const spotifyReq = new Request(
     `https://api.spotify.com/v1/playlists/${playlistId}`,
+    //`https://api.spotify.com/v1/playlists/${playlistId}?fields=name,description,owner,id,tracks(items(track(name,id,duration_ms,artists,album(name,id),type),added_at,added_by))`,
     {
       headers: {
         Authorization: `Bearer ${token}`,

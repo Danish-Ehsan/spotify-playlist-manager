@@ -20,7 +20,7 @@ export async function getTokenController(
 
     const user = await getUserProfile(spotifyToken["access_token"]);
 
-    console.log(user);
+    console.log({ user });
     console.log(spotifyToken.access_token);
 
     const accessTokenPromise = signTokenPromise(

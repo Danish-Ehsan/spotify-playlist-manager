@@ -14,7 +14,7 @@ const port = process.env.PORT;
 app.use(express.json());
 app.use(cookieParser());
 app.use((req, res, next) => {
-  console.log("req url: " + req.url);
+  console.log("\n req url: " + req.url + "\n");
   console.log(`Access Token: ${req.cookies.access_token}\n`);
   console.log(`Refresh Token: ${req.cookies.refresh_token}`);
   next();
