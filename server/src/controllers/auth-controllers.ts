@@ -45,7 +45,7 @@ export async function getTokenController(
         res.cookie("access_token", accessToken, { httpOnly: true });
         res.cookie("refresh_token", refreshToken, {
           httpOnly: true,
-          path: "/refresh-token",
+          path: "/api/auth/refresh-token",
         });
         res.status(200).json(user);
       })
