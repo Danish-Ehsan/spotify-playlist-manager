@@ -1,5 +1,6 @@
 import { LoaderFunctionArgs, useLoaderData } from "react-router-dom";
 import refreshToken from "../utils/refresh-token";
+import SongsTable from "../components/songs-table";
 
 export async function loader({ params, request }: LoaderFunctionArgs) {
   const res = await fetch(`/api/user/playlist/${params.playlistId}`);
@@ -29,8 +30,10 @@ export default function Playlist() {
           by {playlist.owner.display_name}
         </small>
       </h1>
+      <h3>Number of songs: {playlist.tracks.items.length}</h3>
+      <SongsTable playlist={playlist} />
       <pre>
-        <code>{JSON.stringify(playlist, null, 3)}</code>
+        <code>{JSON.stringify(playlist, null, "-")}</code>
       </pre>
     </section>
   );
